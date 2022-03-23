@@ -24,15 +24,14 @@ const residentSchema = new mongoose.Schema({
         required: true,
     },
     office: {
-         
+        type: mg.Types.ObjectId, ref: 'office'
     },
-    projects: {
-       
-    },
-    tasks: {
-       
-   }
-
+    projects: [{
+      type: mg.Types.ObjectId, ref: 'projects'
+    }],
+    tasks: [
+      tasksSchema
+    ]
 })
 
 const model = mongoose.model('residents', residentSchema)

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const clientSchema = new mongoose.Schema({
+
     name: {
         type: String,
         required: true,
@@ -38,11 +39,11 @@ const clientSchema = new mongoose.Schema({
         trim: true 
       },
       office: {
-         
+         type: mg.Types.ObjectId, ref: 'office'
       },
-      projects: {
-         
-     }
+      projects: [{
+        type: mg.Types.ObjectId, ref: 'projects'
+     }]
 })
 
 const model = mongoose.model('clients', clientSchema)

@@ -30,15 +30,15 @@ const officeSchema = new mongoose.Schema({
         maxlength: 15,
         trim: true 
       },
-      clients: {
-         
-      },
-      residents: {
-         
-      },
-      projects: {
-         
-     }
+      clients: [{
+        type: mg.Types.ObjectId, ref: 'clients'
+      }],
+      residents: [{
+        type: mg.Types.ObjectId, ref: 'residents'
+      }],
+      projects: [{
+        type: mg.Types.ObjectId, ref: 'projects'
+     }]
 })
 
 const model = mongoose.model('office', officeSchema)

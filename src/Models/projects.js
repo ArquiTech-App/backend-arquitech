@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const documentSchema = require('./documents')
+const tasksSchema = require('./tasks')
 
 const projectSchema = new mongoose.Schema({
     name: {
@@ -29,18 +31,18 @@ const projectSchema = new mongoose.Schema({
         maxlength: 100,
         trim: true 
       },
-      clients: {
-         
-      },
+      clients: [{
+        type: mg.Types.ObjectId, ref: 'clients'
+      }],
       office: {
-         
+        type: mg.Types.ObjectId, ref: 'office' 
       },
-      documents: {
-         
-      },
-      tasks: {
-       
-      }
+      documents: [
+        documentSchema
+      ],
+      tasks: [
+          tasksSchema
+      ]
 })
 
 const model = mongoose.model('projects', projectSchema)

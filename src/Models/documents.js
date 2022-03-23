@@ -23,10 +23,9 @@ const documentSchema = new mongoose.Schema({
         trim: true 
      },
      categories: {
-       
+        type:String,
+        enum:['reports','videos','pdfs'] 
      }
 })
 
-const model = mongoose.model('documents', documentSchema)
-
-module.exports = model
+module.exports = documentSchema

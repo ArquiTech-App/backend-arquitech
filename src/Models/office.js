@@ -8,7 +8,7 @@ const officeSchema = new mongoose.Schema({
         maxlength: 100,
         trim: true 
       },
-      adress: {
+      address: {
         type: String,
         required: true,
         maxlength: 100,

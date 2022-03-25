@@ -6,8 +6,7 @@ const router = express.router();
 
 router.get('/office', async (request, response) => {
     try{
-
-        const {officeCurrent} = request.body
+        
         const allOffices = await useCasesOffice.getOffices()
 
         response.json({
@@ -62,9 +61,6 @@ router.post('/office', async (request, response)=> {
         response.json({
             success: true,
             message: 'Office Created',
-            data:{
-                officeCreated: officeCreated
-            }
         })
 
     } catch (error) {
@@ -82,7 +78,7 @@ router.patch('/office/:id', async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const dataToUpdate = request.body;
-        const office = await useCasesOffice.updateData(idOffice, dataToUpdate, {new:true});
+        const office = await useCasesOffice.updateData(idOffice, dataToUpdate);
 
         if(!office) throw new Error('Office Not Found');
         response.json({

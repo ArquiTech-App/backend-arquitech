@@ -12,7 +12,7 @@ function getById(idOffice){
 function create(dataOffice){
     const {name, address, email, password, rfc, clients, residents, projects} = dataOffice
 
-    const emailFound = await Office.findOne({office: email})
+    const emailFound = await Office.findOne({email: email})
     if(emailFound) throw new Error("Not permision to create, this e-mail already exist");
 
     const passwordEncrypt = await bcrypt.hash(password)

@@ -12,11 +12,12 @@ function getById(idOffice){
 function create(dataOffice){
     const {name, address, email, password, rfc, clients, residents, projects} = dataOffice
 
-    const officeFound = await Office.findOne({office: office})
-    if(officeFound) throw new Error("Not permision to create, this office already exist");
+    const emailFound = await Office.findOne({office: email})
+    if(emailFound) throw new Error("Not permision to create, this e-mail already exist");
 
     const passwordEncrypt = await bcrypt.hash(password)
-    return Office.create({name, address, email, password: passwordEncrypt, rfc, clients, residents, projects}) 
+    return Office.create({...dataOffice,
+                            password: passwordEncrypt}) 
 }
 
 function updateData(idOffice, dataToUpdate){

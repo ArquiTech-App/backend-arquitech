@@ -124,4 +124,27 @@ router.delete('/office/:id', async (request, response)=> {
     }  
 })
 
+
+// Login 
+router.post('/login', async (request, response)=>{
+    try {
+        const {email, password} = req.body;
+        const token = await useCasesOffice.login(email, password);
+
+        response.json({
+            success: true, 
+            message: 'Login succesfully',
+            data:{
+                token
+            }
+        })
+    } catch (error) {
+        res.status(400)
+        res.json({
+            success: false,
+            message: 'Could not register',
+            error: error.message
+        })
+    }
+})
 module.exports = router;

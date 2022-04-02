@@ -31,9 +31,9 @@ const projectSchema = new mongoose.Schema({
         maxlength: 100,
         trim: true 
       },
-      clients: [{
+      client: {
         type: mg.Types.ObjectId, ref: 'clients'
-      }],
+      },
       office: {
         type: mg.Types.ObjectId, ref: 'office' 
       },

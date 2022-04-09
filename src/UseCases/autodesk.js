@@ -12,7 +12,7 @@ let upload = multer({dest: '../upload/'})
 let urn = '';
 
 
-const authorization = async ()=>{
+async function authorization(){
     try {
         let res = await Axios({
             method: 'POST',
@@ -34,7 +34,7 @@ const authorization = async ()=>{
     }
 }
 
-const publicAuthorization = async (response) =>{
+async function publicAuthorization(response) {
     try {
         let res = await Axios({
             method: 'POST',
@@ -59,7 +59,7 @@ const publicAuthorization = async (response) =>{
     }
 }
 
-const createBucket = async (nameBucket) =>{
+async function createBucket(nameBucket) {
     const bucketKey = nameBucket;
     const plicyKey = 'persistent'
 
@@ -87,7 +87,7 @@ const createBucket = async (nameBucket) =>{
     }
 }
 
-const uploadDocumentAutodesk =  (request) =>{
+async function uploadDocumentAutodesk(request) {
     const fs = require('fs');
     fs.readFile(request.file.path, async (err, filecontent)=>{
         try {
@@ -109,7 +109,7 @@ const uploadDocumentAutodesk =  (request) =>{
     })
 }
 
-const modelDerivative = async (urn) =>{
+async function modelDerivative(urn) {
     try {
         let result = await Axios({
             method: 'POST',

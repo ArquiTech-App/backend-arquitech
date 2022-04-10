@@ -5,9 +5,11 @@ const projects = require('./Routers/projects');
 
 const server = express();
 
+
 server.use(express.json());
 server.use(cors());
 server.use('/', office);
 server.use('/', projects);
+
 
 module.exports = server

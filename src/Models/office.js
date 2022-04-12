@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mg = require('mongoose');
 
-const officeSchema = new mongoose.Schema({
+
+const officeSchema = new mg.Schema({
     name: {
         type: String,
         required: true,
@@ -41,6 +42,6 @@ const officeSchema = new mongoose.Schema({
      }]
 })
 
-const model = mongoose.model('office', officeSchema)
+const model = mg.model('office', officeSchema)
 
 module.exports = model

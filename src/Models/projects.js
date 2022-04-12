@@ -1,8 +1,10 @@
-const mongoose = require('mongoose');
+const mg = require('mongoose');
 const documentSchema = require('./documents')
 const tasksSchema = require('./tasks')
 
-const projectSchema = new mongoose.Schema({
+
+
+const projectSchema = new mg.Schema({
     name: {
         type: String,
         required: true,
@@ -45,6 +47,6 @@ const projectSchema = new mongoose.Schema({
       ]
 })
 
-const model = mongoose.model('projects', projectSchema)
+const model = mg.model('projects', projectSchema)
 
 module.exports = model

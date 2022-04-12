@@ -6,9 +6,8 @@ function validation(req, res, next) {
         const {authorization: token} = req.headers;
         const {id: idToken} = jwt.decode(token)
         
-        if (idReq != idToken) throw new Error({
-            message: 'You don´t have permission...'
-        })
+        if (idReq != idToken) throw new Error(
+        'You don´t have permission...')
         next();
 
     } catch (error) {
@@ -18,6 +17,7 @@ function validation(req, res, next) {
             message: 'not authorized',
             error: error.message
         })
+        console.log(error);
     }
 }
 

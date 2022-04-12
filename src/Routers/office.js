@@ -30,7 +30,7 @@ router.get('/offices',auth, async (request, response) => {
     }
 })
 
-router.get('/offices/:id', auth, async (request, response)=> {
+router.get('/offices/:id', auth, validation, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const officeFound = await useCasesOffice.getById(idOffice);
@@ -102,7 +102,7 @@ router.patch('/offices/:id',auth, validation, async (request, response)=> {
     }   
 })
 
-router.delete('/offices/:id',auth, async (request, response)=> {
+router.delete('/offices/:id',auth, validation, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const deleteOffice = await useCasesOffice.deleteById(idOffice)

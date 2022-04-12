@@ -1,7 +1,7 @@
 const express = require('express');
 const useCasesOffice = require('../UseCases/office');
 const auth = require('../Middlewares/auth')
-
+const validation = require('../Middlewares/validation')
 const router = express.Router();
 
 
@@ -76,7 +76,7 @@ router.post('/offices', async (request, response)=> {
     }    
 })
 
-router.patch('/offices/:id',auth, async (request, response)=> {
+router.patch('/offices/:id',auth, validation, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const dataToUpdate = request.body;

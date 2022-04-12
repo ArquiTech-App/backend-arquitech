@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const residentSchema = new mongoose.Schema({
+const mg = mongoose
+
+const residentSchema = new mg.Schema({
     name: {
         type: String,
         required: true,
@@ -34,6 +36,6 @@ const residentSchema = new mongoose.Schema({
     ]
 })
 
-const model = mongoose.model('residents', residentSchema)
+const model = mg.model('residents', residentSchema)
 
 module.exports = model

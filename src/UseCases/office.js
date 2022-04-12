@@ -10,7 +10,7 @@ function getById(idOffice){
     return Office.findById(idOffice)
 }
 
-function create(dataOffice){
+async function create(dataOffice){
     const {name, address, email, password, rfc, client, residents, projects} = dataOffice
 
     const emailFound = await Office.findOne({email: email})
@@ -32,14 +32,14 @@ function deleteById(idOffice){
 //Login Office
 async function login(email, password){
     const officeFound = await Office.findOne({email: email});
-
+    
     if (!officeFound) throw new Error('Invalid credentials')
 
     const isValidPassword = await bcrypt.compare(password, officeFound.password)
 
     if (!isValidPassword) throw new Error('Invalid credentials')
-
-    return jwt.sign({id: officeFound.id})
+    
+    return jwt.sing({id: officeFound.id})
         
     
 }

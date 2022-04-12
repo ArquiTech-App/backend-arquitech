@@ -11,7 +11,7 @@ function getById(idProjects){
 }
 
 function create(dataProjects){
-    const {name, organization, status, contract, client, office, documents, tasks} = dataProjects
+    const {name, organization, status, contract, clients, offices, documents, tasks} = dataProjects
 
     const ProjectFound = await Projects.findOne({name: name})
     if(ProjectFound) throw new Error("Not permision to create, this Project already exist");

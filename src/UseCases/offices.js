@@ -1,37 +1,37 @@
-const Office = require('../Models/office');
+const Offices = require('../Models/offices');
 const bcrypt = require('../Lib/bcrypt');
 const jwt = require('../Lib/jwt');
 
 function getOffices(){
-    return Office.find({})
+    return Offices.find({})
 }
 
 function getById(idOffice){
-    return Office.findById(idOffice)
+    return Offices.findById(idOffice)
 }
 
-function create(dataOffice){
-    const {name, address, email, password, rfc, client, residents, projects} = dataOffice
+function create(dataOffices){
+    const {name, address, email, password, rfc, clients, residents, projects} = dataOffices
 
-    const emailFound = await Office.findOne({email: email})
+    const emailFound = await getOffices.findOne({email: email})
     if(emailFound) throw new Error("Not permision to create, this e-mail already exist");
 
     const passwordEncrypt = await bcrypt.hash(password)
-    return Office.create({...dataOffice,
+    return Offices.create({...dataOffices,
                             password: passwordEncrypt}) 
 }
 
 function updateData(idOffice, dataToUpdate){
-    return Office.findByIdAndUpdate(idOffice, dataToUpdate, {new:true})
+    return Offices.findByIdAndUpdate(idOffice, dataToUpdate, {new:true})
 }
 
 function deleteById(idOffice){
-    return Office.findByIdAndDelete(idOffice)
+    return Offices.findByIdAndDelete(idOffice)
 }
 
 //Login Office
 async function login(email, password){
-    const officeFound = await Office.findOne({email: email});
+    const officeFound = await Offices.findOne({email: email});
 
     if (!officeFound) throw new Error('Invalid credentials')
 

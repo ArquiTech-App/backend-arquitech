@@ -1,19 +1,19 @@
 const express = require('express');
 
-const useCasesOffice = require('../UseCases/office')
+const useCasesOffices = require('../UseCases/offices')
 
 const router = express.router();
 
-router.get('/office', async (request, response) => {
+router.get('/offices', async (request, response) => {
     try{
         
-        const allOffices = await useCasesOffice.getOffices()
+        const allOffices = await useCasesOffices.getOffices()
 
         response.json({
             success: true,
             message: 'allOffices',
             data: {
-                office: allOffices,
+                offices: allOffices,
             }
         })
 
@@ -28,17 +28,17 @@ router.get('/office', async (request, response) => {
     }
 })
 
-router.get('/office/:id', async (request, response)=> {
+router.get('/offices/:id', async (request, response)=> {
     try{
         const idOffice = request.params.id;
-        const officeFound = await useCasesOffice.getById(idOffice);
+        const officeFound = await useCasesOffices.getById(idOffice);
 
         if(!officeFound) throw new Error("Office not found");
         response.json({
             success: true,
             message: "Office found",
             data: {
-                office: officeFound
+                offices: officeFound
             }
         })
 
@@ -53,10 +53,10 @@ router.get('/office/:id', async (request, response)=> {
 })
 
 //contraseña encriptada
-router.post('/office', async (request, response)=> {
+router.post('/offices', async (request, response)=> {
     try{
         const officeToCreate = request.body
-        const officeCreated = await useCasesOffice.create(officeToCreate);
+        const officeCreated = await useCasesOffices.create(officeToCreate);
 
         response.json({
             success: true,
@@ -69,23 +69,24 @@ router.post('/office', async (request, response)=> {
         response.json({
             success: false,
             message: 'Error at Create Office',
+            
             error: error.message
         })
     }    
 })
 
-router.patch('/office/:id', async (request, response)=> {
+router.patch('/offices/:id', async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const dataToUpdate = request.body;
-        const office = await useCasesOffice.updateData(idOffice, dataToUpdate);
+        const office = await useCasesOffices.updateData(idOffice, dataToUpdate);
 
         if(!office) throw new Error('Office Not Found');
         response.json({
             success: true,
             message: 'Office Updated Successfully',
             data:{
-                office: office
+                offices: office
             }
         })
 
@@ -100,16 +101,16 @@ router.patch('/office/:id', async (request, response)=> {
     }   
 })
 
-router.delete('/office/:id', async (request, response)=> {
+router.delete('/offices/:id', async (request, response)=> {
     try{
         const idOffice = request.params.id;
-        const deleteOffice = await useCasesOffice.deleteById(idOffice)
+        const deleteOffice = await useCasesOffices.deleteById(idOffice)
 
         response.json({
             success: true,
             message: 'Delete Office',
             data:{
-                office: deleteOffice
+                offices: deleteOffice
             }
         })
 
@@ -129,7 +130,7 @@ router.delete('/office/:id', async (request, response)=> {
 router.post('/login', async (request, response)=>{
     try {
         const {email, password} = req.body;
-        const token = await useCasesOffice.login(email, password);
+        const token = await useCasesOffices.login(email, password);
 
         response.json({
             success: true, 

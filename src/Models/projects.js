@@ -34,7 +34,7 @@ const projectSchema = new mongoose.Schema({
       client: {
         type: mg.Types.ObjectId, ref: 'clients'
       },
-      office: {
+      offices: {
         type: mg.Types.ObjectId, ref: 'office' 
       },
       documents: [

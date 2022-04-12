@@ -15,6 +15,13 @@ const clientSchema = new mongoose.Schema({
         maxlength: 100,
         trim: true 
       },
+      phone:{
+        type: Number,
+        required: true,
+        minlength: 8,
+        maxlength: 10,
+        trim: true 
+      },
       organization: {
         type: String,
         required: true,
@@ -38,7 +45,7 @@ const clientSchema = new mongoose.Schema({
         maxlength: 15,
         trim: true 
       },
-      office: {
+      offices: {
          type: mg.Types.ObjectId, ref: 'office'
       },
       projects: [{

@@ -15,14 +15,14 @@ function create(dataClients){
 
     const passwordFound = await Clients.findOne({password: password})
     if(passwordFound) throw new Error("Not permision to create, this password already exist");
-
-    const passwordEncrypt = await bcrypt.hash(password)
-    return Clients.create({...dataClients,
-                            password: passwordEncrypt}) 
 }
 
 function updateData(idClient, dataToUpdate){
    return Clients.findByIdAndUpdate(idClient, dataToUpdate, {new:true})
+
+   const passwordEncrypt = await bcrypt.hash(password)
+    return Clients.create({...dataClients,
+                            password: passwordEncrypt})
 }
 
 function deleteById(idClient){

@@ -107,9 +107,7 @@ router.patch('/reset-password/:id_user', async (request, response)=> {
     try{
         
         const idClient = request.params.id;
-        const dataToUpdate = request.body.password;
-        const newPassword = request.body.password;
-        const confirmPassword = request.body.password;
+        const dataToUpdate = request.body;
         const client = await useCasesClients.updateData(idClient, dataToUpdate);
 
         if(!client) throw new Error('Client Not Found');
@@ -117,7 +115,7 @@ router.patch('/reset-password/:id_user', async (request, response)=> {
             success: true,
             message: 'Client Updated Successfully',
             data:{
-                clients: clients
+                clients: client
             }
         })
 

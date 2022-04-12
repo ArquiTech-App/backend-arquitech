@@ -23,7 +23,7 @@ const residentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    offices: {
+    office: {
         type: mg.Types.ObjectId, ref: 'office'
     },
     projects: [{

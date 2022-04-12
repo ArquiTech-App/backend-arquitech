@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 
-router.get('/office',auth, async (request, response) => {
+router.get('/offices',auth, async (request, response) => {
     try{
         
         const allOffices = await useCasesOffice.getOffices()
@@ -30,7 +30,7 @@ router.get('/office',auth, async (request, response) => {
     }
 })
 
-router.get('/office/:id', auth, async (request, response)=> {
+router.get('/offices/:id', auth, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const officeFound = await useCasesOffice.getById(idOffice);
@@ -55,7 +55,7 @@ router.get('/office/:id', auth, async (request, response)=> {
 })
 
 //contraseña encriptada
-router.post('/office', async (request, response)=> {
+router.post('/offices', async (request, response)=> {
     try{
         const officeToCreate = request.body
         const officeCreated = await useCasesOffice.create(officeToCreate);
@@ -76,7 +76,7 @@ router.post('/office', async (request, response)=> {
     }    
 })
 
-router.patch('/office/:id',auth, async (request, response)=> {
+router.patch('/offices/:id',auth, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const dataToUpdate = request.body;
@@ -102,7 +102,7 @@ router.patch('/office/:id',auth, async (request, response)=> {
     }   
 })
 
-router.delete('/office/:id',auth, async (request, response)=> {
+router.delete('/offices/:id',auth, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const deleteOffice = await useCasesOffice.deleteById(idOffice)
@@ -128,7 +128,7 @@ router.delete('/office/:id',auth, async (request, response)=> {
 
 
 // Login 
-router.post('/office/login', async (request, response)=>{
+router.post('/offices/login', async (request, response)=>{
     try {
         const {email, password} = request.body;
         const token = await useCasesOffice.login(email, password);

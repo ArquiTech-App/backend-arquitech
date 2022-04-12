@@ -39,7 +39,7 @@ async function login(email, password){
 
     if (!isValidPassword) throw new Error('Invalid credentials')
     
-    return jwt.sing({id: officeFound.id})
+    return jwt.sign({id: officeFound.id})
         
     
 }

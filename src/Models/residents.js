@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mg = require('mongoose');
 
-const mg = mongoose
+
 
 const residentSchema = new mg.Schema({
     name: {

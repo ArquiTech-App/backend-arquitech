@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const mg = mongoose
+const mg = require('mongoose');
+
 const documentSchema = new mg.Schema({
     name: {
         type: String,

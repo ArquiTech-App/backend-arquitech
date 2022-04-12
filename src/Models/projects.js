@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const mg = require('mongoose');
 const documentSchema = require('./documents')
 const tasksSchema = require('./tasks')
 
-const mg = mongoose;
+
 
 const projectSchema = new mg.Schema({
     name: {

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const mg = mongoose
+const mg = require('mongoose');
+
 
 const officeSchema = new mg.Schema({
     name: {

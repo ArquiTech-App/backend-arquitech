@@ -29,6 +29,7 @@ const residentSchema = new mg.Schema({
       type: String,
       required: true,
       trim: true,
+      enum: ['admin', 'readOnly', 'readAndWrite']
     },
     office: {
         type: mg.Types.ObjectId, ref: 'office'

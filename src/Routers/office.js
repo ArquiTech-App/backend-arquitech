@@ -58,10 +58,7 @@ router.get('/offices/:id', auth, validation, async (request, response)=> {
 //contraseña encriptada
 router.post('/offices', async (request, response)=> {
     try{
-        const officeToCreate = {
-            ...request.body,
-            permission: 'resident'
-        }
+        const officeToCreate = request.body 
         const officeCreated = await useCasesOffice.create(officeToCreate);
 
         response.json({

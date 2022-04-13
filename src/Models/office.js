@@ -27,6 +27,8 @@ const officeSchema = new mg.Schema({
     type: String,
     required: true,
     trim: true,
+    enum: ['admin', 'readOnly', 'readAndWrite'],
+    default: 'admin'
   },
   rfc: {
     type: String,

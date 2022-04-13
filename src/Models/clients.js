@@ -41,6 +41,7 @@ const clientSchema = new mg.Schema({
     type: String,
     required: true,
     trim: true,
+    enum:['readOnly', 'readAndWrite']
   },
   office: {
     type: mg.Types.ObjectId,

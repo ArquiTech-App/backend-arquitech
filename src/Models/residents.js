@@ -25,6 +25,11 @@ const residentSchema = new mg.Schema({
         type: String,
         required: true,
     },
+    permission: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     office: {
         type: mg.Types.ObjectId, ref: 'office'
     },

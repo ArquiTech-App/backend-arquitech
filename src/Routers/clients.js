@@ -130,5 +130,25 @@ router.patch('/reset-password/:id_user', async (request, response)=> {
     }   
 })
 
+//post api mail
+
+router.post('/api/mail', async (request, response) => {
+
+    const {to, subject, text, html} = request.body;
+
+    const message = {
+        to,
+        from: 'cristianluru@gmail.com',
+        subject,
+        text,
+        html
+    }
+
+    response.status(201)
+    response.json({
+        success: true
+    });
+})
+
 
 module.exports = router;

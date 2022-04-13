@@ -1,6 +1,7 @@
 const Clients = require('../Models/clients');
 const bcrypt = require('../Lib/bcrypt');
 const jwt = require('../Lib/jwt');
+const sgMail = require('../Lib/sendgrid')
 
 function getClients(){
    return Clients.find({})

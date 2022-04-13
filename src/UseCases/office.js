@@ -11,7 +11,7 @@ function getById(idOffice){
 }
 
 async function create(dataOffice){
-    const {name, address, email, password, rfc, client, residents, projects} = dataOffice
+    const {name, address, email, password, rfc, client, residents, projects, permission} = dataOffice
 
     const emailFound = await Office.findOne({email: email})
     if(emailFound) throw new Error("Not permision to create, this e-mail already exist");
@@ -39,7 +39,8 @@ async function login(email, password){
 
     if (!isValidPassword) throw new Error('Invalid credentials')
     
-    return jwt.sign({id: officeFound.id})
+    return jwt.sign({id: officeFound.id,
+    permission: officeFound.permission})
         
     
 }

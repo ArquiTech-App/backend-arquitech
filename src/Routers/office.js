@@ -1,6 +1,7 @@
 const express = require('express');
 const useCasesOffice = require('../UseCases/office');
-const auth = require('../Middlewares/auth')
+const auth = require('../Middlewares/auth');
+const {admin, writer, read} = require('../Middlewares/permission');
 const validation = require('../Middlewares/validation')
 const router = express.Router();
 
@@ -57,7 +58,7 @@ router.get('/offices/:id', auth, validation, async (request, response)=> {
 //contraseña encriptada
 router.post('/offices', async (request, response)=> {
     try{
-        const officeToCreate = request.body
+        const officeToCreate = request.body 
         const officeCreated = await useCasesOffice.create(officeToCreate);
 
         response.json({
@@ -102,7 +103,7 @@ router.patch('/offices/:id',auth, validation, async (request, response)=> {
     }   
 })
 
-router.delete('/offices/:id',auth, validation, async (request, response)=> {
+router.delete('/offices/:id',auth, validation, admin,  async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const deleteOffice = await useCasesOffice.deleteById(idOffice)

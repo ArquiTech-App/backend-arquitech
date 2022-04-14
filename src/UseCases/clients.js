@@ -21,10 +21,10 @@ function getById(idClient){
 async function updateData(idClient, dataToUpdate){
 
    const {newPassword, confirmPassword} = dataToUpdate
-   if(newPassword !== confirmPassword) throw new Error("Error Confirming New Password");
+   if(newPassword !== confirmPassword) throw new Error("Error Passwords do not match");
 
-   const passwordEncrypt = await bcrypt.hash(password)
-   return Clients.findByIdAndUpdate(idClient, dataToUpdate, {password: passwordEncrypt})
+   const passwordEncrypt = await bcrypt.hash(newPassword)
+   return Clients.findByIdAndUpdate(idClient, {password: passwordEncrypt}, {new:true})
 }
 
 function deleteById(idClient){

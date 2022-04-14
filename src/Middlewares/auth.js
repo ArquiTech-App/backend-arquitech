@@ -1,5 +1,5 @@
 const jwt = require('../Lib/jwt');
-const sgMail = require('../lib/Lib/sengrid')
+
 
 function auth(req, res, next) {
     try {

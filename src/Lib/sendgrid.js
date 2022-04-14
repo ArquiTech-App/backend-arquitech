@@ -25,6 +25,5 @@ function mailResetPassword({email, firstName, lastName, token}) {
  }
 
 module.exports = {
-    sgMail,
     mailResetPassword
 }

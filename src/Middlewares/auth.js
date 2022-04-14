@@ -1,4 +1,5 @@
 const jwt = require('../Lib/jwt');
+const sgMail = require('../lib/Lib/sengrid')
 
 function auth(req, res, next) {
     try {
@@ -7,7 +8,7 @@ function auth(req, res, next) {
         const isValidToken = jwt.verify(token)
 
         if(!isValidToken) throw new Error('Not Authorized')
-        req.officerCurrent = isValidToken.id;
+        req.userCurrent = isValidToken.id;
         next();
     } catch (error) {
         res.status(401)

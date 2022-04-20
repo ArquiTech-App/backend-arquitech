@@ -1,5 +1,5 @@
 const querystring = require('querystring');
-const multer = require('multer');
+
 const Axios = require('Axios');
 require('dotenv').config();
 
@@ -8,7 +8,6 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const scopes = 'data:read data:write data:create bucket:create bucket:read viewables:read';
 let access_token = '';
-let upload = multer({dest: '../upload/'})
 let urn = '';
 
 
@@ -61,7 +60,7 @@ async function publicAuthorization(response) {
 
 async function createBucket(nameBucket) {
     const bucketKey = nameBucket;
-    const plicyKey = 'persistent'
+    const policyKey = 'persistent'
 
     try {
         

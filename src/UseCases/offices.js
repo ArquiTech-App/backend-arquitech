@@ -31,7 +31,7 @@ function deleteById(idOffice){
 
 //Login Office
 async function login(email, password){
-    const officeFound = await Office.findOne({email: email});
+    const officeFound = await Office.findOne({email: email})
 
     if (!officeFound) throw new Error('Invalid credentials')
 
@@ -40,7 +40,6 @@ async function login(email, password){
     if (!isValidPassword) throw new Error('Invalid credentials')
 
     return jwt.sign({id: officeFound.id})
-        
     
 }
 

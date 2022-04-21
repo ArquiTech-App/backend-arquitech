@@ -12,10 +12,19 @@ function getById(idClient){
 }
 
  async function create(dataClients){
-    const {name, address, phone, organization, email, password, rfc, client, offices, projects} = dataClients
+   const {name, email, lastName} = dataClients
+   
+   const userFound = await getClients.findOne({email:email})
+   if (!userFound) throw new Error('Not permision to create, this client already exist') 
+   
+   const isValidMailUser = await Clients.compare(email, userFound.email)
+   if (!isValidMailUser) throw new Error('Not permision to create, this email already exist')
+   
+   const clientCreated = await Clients.create({...dataClients})
 
-    const passwordFound = await Clients.findOne({password: password})
-    if(passwordFound) throw new Error("Not permision to create, this password already exist");
+   const token = jwt.sign({id: clientCreated._id})
+
+    sgMail.emailResetPassword({name, lastName, email, token})
 }
 
 async function updateData(idClient, dataToUpdate){
@@ -30,7 +39,6 @@ async function updateData(idClient, dataToUpdate){
 function deleteById(idClient){
    return Clients.findByIdAndDelete(idClient)
 }
-
 
 module.exports = {
    getClients,

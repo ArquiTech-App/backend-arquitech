@@ -18,7 +18,7 @@ function mailResetPassword({email, firstName, lastName, token}) {
         dynamic_template_data: {
             firstName,
             lastName,
-            url: 'http://example.com'
+            url: 'http://localhost:3000/activate-account?token=${token}'
         }
     }
     return sgMail.send(message);

@@ -12,15 +12,11 @@
   "author": "@kristomeister",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "@sendgrid/mail": "^7.6.2",
-    "bcrypt": "^5.0.1",
-=======
     "aws-sdk": "^2.1116.0",
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",

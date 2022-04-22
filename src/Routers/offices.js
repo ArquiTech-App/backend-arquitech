@@ -1,21 +1,11 @@
 const express = require('express');
-const useCasesOffice = require('../UseCases/office');
+const useCasesOffices = require('../UseCases/offices');
 const auth = require('../Middlewares/auth');
 const {admin, writer, read} = require('../Middlewares/permission');
 const validation = require('../Middlewares/validation')
 const router = express.Router();
 
-<<<<<<< HEAD:src/Routers/offices.js
-const useCasesOffices = require('../UseCases/offices')
-=======
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
-
-
-<<<<<<< HEAD:src/Routers/offices.js
-router.get('/', async (request, response) => {
-=======
-router.get('/offices',auth, async (request, response) => {
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
+router.get('/',auth, async (request, response) => {
     try{
         
         const allOffices = await useCasesOffices.getOffices()
@@ -39,11 +29,8 @@ router.get('/offices',auth, async (request, response) => {
     }
 })
 
-<<<<<<< HEAD:src/Routers/offices.js
-router.get('/:id', async (request, response)=> {
-=======
-router.get('/offices/:id', auth, validation, async (request, response)=> {
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
+router.get('/:id', auth, validation, async (request, response)=> {
+
     try{
         const idOffice = request.params.id;
         const officeFound = await useCasesOffices.getById(idOffice);
@@ -68,17 +55,10 @@ router.get('/offices/:id', auth, validation, async (request, response)=> {
 })
 
 //contraseña encriptada
-<<<<<<< HEAD:src/Routers/offices.js
 router.post('/', async (request, response)=> {
     try{
-        const officeToCreate = request.body
-        const officeCreated = await useCasesOffices.create(officeToCreate);
-=======
-router.post('/offices', async (request, response)=> {
-    try{
         const officeToCreate = request.body 
-        const officeCreated = await useCasesOffice.create(officeToCreate);
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
+        const officeCreated = await useCasesOffices.create(officeToCreate);
 
         response.json({
             success: true,
@@ -97,11 +77,7 @@ router.post('/offices', async (request, response)=> {
     }    
 })
 
-<<<<<<< HEAD:src/Routers/offices.js
-router.patch('/:id', async (request, response)=> {
-=======
-router.patch('/offices/:id',auth, validation, async (request, response)=> {
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
+router.patch('/:id',auth, validation, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const dataToUpdate = request.body;
@@ -127,11 +103,7 @@ router.patch('/offices/:id',auth, validation, async (request, response)=> {
     }   
 })
 
-<<<<<<< HEAD:src/Routers/offices.js
-router.delete('/:id', async (request, response)=> {
-=======
-router.delete('/offices/:id',auth, validation, admin,  async (request, response)=> {
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
+router.delete('/:id',auth, validation, admin,  async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const deleteOffice = await useCasesOffices.deleteById(idOffice)
@@ -159,13 +131,8 @@ router.delete('/offices/:id',auth, validation, admin,  async (request, response)
 // Login 
 router.post('/offices/login', async (request, response)=>{
     try {
-<<<<<<< HEAD:src/Routers/offices.js
-        const {email, password} = req.body;
-        const token = await useCasesOffices.login(email, password);
-=======
         const {email, password} = request.body;
-        const token = await useCasesOffice.login(email, password);
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5:src/Routers/office.js
+        const token = await useCasesOffices.login(email, password);
 
         response.json({
             success: true, 

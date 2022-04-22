@@ -31,13 +31,13 @@ const officeSchema = new mongoose.Schema({
         trim: true 
       },
       clients: [{
-        type: mg.Types.ObjectId, ref: 'clients'
+        type: mongoose.Types.ObjectId, ref: 'clients'
       }],
       residents: [{
-        type: mg.Types.ObjectId, ref: 'residents'
+        type: mongoose.Types.ObjectId, ref: 'residents'
       }],
       projects: [{
-        type: mg.Types.ObjectId, ref: 'projects'
+        type: mongoose.Types.ObjectId, ref: 'projects'
      }]
 })
 

@@ -46,10 +46,10 @@ const clientSchema = new mongoose.Schema({
         trim: true 
       },
       office: {
-         type: mg.Types.ObjectId, ref: 'office'
+         type: mongoose.Types.ObjectId, ref: 'office'
       },
       projects: [{
-        type: mg.Types.ObjectId, ref: 'projects'
+        type: mongoose.Types.ObjectId, ref: 'projects'
      }]
 })
 

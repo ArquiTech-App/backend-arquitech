@@ -10,7 +10,7 @@ function getById(idOffice){
     return Office.findById(idOffice)
 }
 
-function create(dataOffices){
+async function create(dataOffices){
     const {name, address, email, password, rfc, clients, residents, projects} = dataOffices
 
     const emailFound = await getOffices.findOne({email: email})

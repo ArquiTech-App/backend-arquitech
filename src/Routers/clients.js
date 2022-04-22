@@ -52,13 +52,11 @@ router.get('/clients/:id', async (request, response)=> {
     }   
 })
 
-router.post('/create', async (request, response) => {
+router.post('/create', (request, response) => {
 
     try{
-        const {body} = request
         const clientToCreate = request.body
-        const clientCreated = await useCasesClients.create(clientToCreate)
-        const emailStatus = await clientCreated.status 
+        const clientCreated = useCasesClients.create(clientToCreate)
         
         response.status(200)
         response.json({

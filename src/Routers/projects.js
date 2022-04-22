@@ -2,7 +2,7 @@ const express = require('express');
 
 const useCasesProjects = require('../UseCases/projects');
 
-const router = express.router();
+const router = express.Router();
 
 router.get('/projects', async (request, response) => {
     try{

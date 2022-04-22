@@ -17,9 +17,6 @@ function getById(idClient){
    const userFound = await getClients.findOne({email:email})
    if (userFound) throw new Error('Not permision to create, this client already exist') 
    
-   const isValidMailUser = await Clients.compare(email, userFound.email)
-   if (!isValidMailUser) throw new Error('Not permision to create, this email already exist')
-   
    const clientCreated = await Clients.create({...dataClients})
 
    const token = jwt.sign({id: clientCreated._id})

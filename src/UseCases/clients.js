@@ -23,7 +23,7 @@ function getById(idClient){
 
    await sgMail.emailResetPassword({name, lastName, email, token})
 
-   return 'email sent'
+   return token('email sent')
 }
 
 async function updateData(idClient, dataToUpdate){

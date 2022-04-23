@@ -10,17 +10,13 @@ function getById(idProjects){
     return Projects.findById(idProjects)
 }
 
-<<<<<<< HEAD
-function create(dataProjects){
-    const {name, organization, status, contract, clients, offices, documents, tasks} = dataProjects
-=======
+
+
 async function create(dataProjects){
     const {name, organization, status, contract, client, office, documents, tasks} = dataProjects
->>>>>>> 9bc41a02fb65f9939949bff45c78f8efd86ab2d5
 
     const ProjectFound = await Projects.findOne({name: name})
     if(ProjectFound) throw new Error("Not permision to create, this Project already exist");
-    
 }
 
 function updateData(idProject, dataToUpdate){

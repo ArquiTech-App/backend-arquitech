@@ -1,4 +1,4 @@
-##Bienvenidos al Repositorio de ArquiTech App!:tw-1f301:
+##Bienvenidos al Repositorio de ArquiTech App! :tw-1f301:
 
 #### Introducción:
 
@@ -7,10 +7,10 @@
 #### Equipo:
 
 :tw-1f60e: Héctor Enríquez
-:fa-github-square:@Deveckor
+:fa-github-square: @Deveckor
 
 :tw-1f60e: Cristian Luna
-:fa-github-square:@KristomeisterDev
+:fa-github-square: @KristomeisterDev
 
 :tw-1f60e: Hugo Rodríguez
-:fa-github-square:@HugoRoo
+:fa-github-square: @HugoRoo

@@ -1,16 +1,9 @@
 const express = require('express');
-const routerOffice = require('./Routers/offices')
-const routerClient = require('./Routers/clients')
-const routerProject = require('./Routers/projects')
 const cors = require('cors');
+const office = require('./Routers/office');
+const projects = require('./Routers/projects');
 
 const server = express();
-server.use('/', routerOffice)
-server.use('/', routerClient)
-server.use('/', routerProject)
-
-server.use(express.json());
-server.use(cors());
 
 
 server.use(express.json());

@@ -1,6 +1,5 @@
 const jwt = require('../Lib/jwt');
 
-
 function auth(req, res, next) {
     try {
         const {authorization: token} = req.headers

@@ -34,10 +34,10 @@ const projectSchema = new mg.Schema({
         trim: true 
       },
       client: {
-        type: mg.Types.ObjectId, ref: 'clients'
+        type: mongoose.Types.ObjectId, ref: 'clients'
       },
       office: {
-        type: mg.Types.ObjectId, ref: 'office' 
+        type: mongoose.Types.ObjectId, ref: 'office' 
       },
       documents: [
         documentSchema

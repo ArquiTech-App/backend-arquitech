@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ##Bienvenidos al Repositorio de ArquiTech App!
+=======
+##Bienvenidos al Repositorio de ArquiTech App! :tw-1f301:
+>>>>>>> 813ca234674c2963a60723977dda73b7162b0295
 
 #### Introducción:
 

@@ -2,7 +2,7 @@ const express = require('express');
 
 const useCasesClients = require('../UseCases/clients');
 
-const router = express.router();
+const router = express.Router();
 
 router.get('/clients', async (request, response) => {
     try{

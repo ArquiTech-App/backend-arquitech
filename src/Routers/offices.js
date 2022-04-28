@@ -1,10 +1,11 @@
 const express = require('express');
+const useCasesOffices = require('../UseCases/offices');
+const auth = require('../Middlewares/auth');
+const {admin, writer, read} = require('../Middlewares/permission');
+const validation = require('../Middlewares/validation')
+const router = express.Router();
 
-const useCasesOffices = require('../UseCases/offices')
-
-const router = express.router();
-
-router.get('/offices', async (request, response) => {
+router.get('/',auth, async (request, response) => {
     try{
         
         const allOffices = await useCasesOffices.getOffices()
@@ -28,7 +29,8 @@ router.get('/offices', async (request, response) => {
     }
 })
 
-router.get('/offices/:id', async (request, response)=> {
+router.get('/:id', auth, validation, async (request, response)=> {
+
     try{
         const idOffice = request.params.id;
         const officeFound = await useCasesOffices.getById(idOffice);
@@ -53,9 +55,9 @@ router.get('/offices/:id', async (request, response)=> {
 })
 
 //contraseña encriptada
-router.post('/offices', async (request, response)=> {
+router.post('/', async (request, response)=> {
     try{
-        const officeToCreate = request.body
+        const officeToCreate = request.body 
         const officeCreated = await useCasesOffices.create(officeToCreate);
 
         response.json({
@@ -75,7 +77,7 @@ router.post('/offices', async (request, response)=> {
     }    
 })
 
-router.patch('/offices/:id', async (request, response)=> {
+router.patch('/:id',auth, validation, async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const dataToUpdate = request.body;
@@ -101,7 +103,7 @@ router.patch('/offices/:id', async (request, response)=> {
     }   
 })
 
-router.delete('/offices/:id', async (request, response)=> {
+router.delete('/:id',auth, validation, admin,  async (request, response)=> {
     try{
         const idOffice = request.params.id;
         const deleteOffice = await useCasesOffices.deleteById(idOffice)
@@ -127,9 +129,9 @@ router.delete('/offices/:id', async (request, response)=> {
 
 
 // Login 
-router.post('/login', async (request, response)=>{
+router.post('/offices/login', async (request, response)=>{
     try {
-        const {email, password} = req.body;
+        const {email, password} = request.body;
         const token = await useCasesOffices.login(email, password);
 
         response.json({
@@ -140,12 +142,13 @@ router.post('/login', async (request, response)=>{
             }
         })
     } catch (error) {
-        res.status(400)
-        res.json({
+        response.status(400)
+        response.json({
             success: false,
             message: 'Could not register',
             error: error.message
         })
+        
     }
 })
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express');
 
 const useCasesClients = require('../UseCases/clients');
 
-const router = express.router();
+const router = express.Router();
 
 router.get('/clients', async (request, response) => {
     try{
@@ -50,6 +50,29 @@ router.get('/clients/:id', async (request, response)=> {
             error: error.message
         })
     }   
+})
+
+router.post('/create', (request, response) => {
+
+    try{
+        const clientToCreate = request.body
+        const clientCreated = useCasesClients.create(clientToCreate)
+        
+        response.status(200)
+        response.json({
+            success: true,
+            message: 'Client Created'
+        })
+
+    } catch (error) {
+
+        response.status(404)
+        response.json({
+            success: false,
+            message: 'Error Updating',
+            error: error.message
+        })
+    }  
 })
 
 router.patch('/clients/:id', async (request, response)=> {
@@ -106,7 +129,7 @@ router.delete('/clients/:id', async (request, response)=> {
 router.patch('/reset-password/:id_user', async (request, response)=> {
     try{
         
-        const idClient = request.params.id;
+        const idClient = request.params.id_user;
         const dataToUpdate = request.body;
         const client = await useCasesClients.updateData(idClient, dataToUpdate);
 
@@ -129,26 +152,5 @@ router.patch('/reset-password/:id_user', async (request, response)=> {
         })
     }   
 })
-
-//post api mail
-
-router.post('/api/mail', async (request, response) => {
-
-    const {to, subject, text, html} = request.body;
-
-    const message = {
-        to,
-        from: 'cristianluru@gmail.com',
-        subject,
-        text,
-        html
-    }
-
-    response.status(201)
-    response.json({
-        success: true
-    });
-})
-
 
 module.exports = router;

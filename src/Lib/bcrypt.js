@@ -8,5 +8,5 @@ function hash(plainText){
 
 module.exports = {
     ...bcrypt,
-    hash: myHash
+    hash: hash
 }

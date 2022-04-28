@@ -1,6 +1,6 @@
 const mg = require("mongoose");
 
-const clientSchema = new mg.Schema({
+const officeSchema = new mg.Schema({
   name: {
     type: String,
     required: true,
@@ -8,16 +8,9 @@ const clientSchema = new mg.Schema({
     maxlength: 100,
     trim: true,
   },
-  adress: {
+  address: {
     type: String,
     required: true,
-    maxlength: 100,
-    trim: true,
-  },
-  organization: {
-    type: String,
-    required: true,
-    minlength: 5,
     maxlength: 100,
     trim: true,
   },
@@ -30,6 +23,13 @@ const clientSchema = new mg.Schema({
     type: String,
     required: true,
   },
+  permission: {
+    type: String,
+    required: true,
+    trim: true,
+    enum: ['admin', 'readOnly', 'readAndWrite'],
+    default: 'admin'
+  },
   rfc: {
     type: String,
     required: true,
@@ -37,16 +37,18 @@ const clientSchema = new mg.Schema({
     maxlength: 15,
     trim: true,
   },
-  permission: {
-    type: String,
-    required: true,
-    trim: true,
-    enum:['readOnly', 'readAndWrite']
-  },
-  office: {
-    type: mg.Types.ObjectId,
-    ref: "office",
-  },
+  clients: [
+    {
+      type: mg.Types.ObjectId,
+      ref: "clients",
+    },
+  ],
+  residents: [
+    {
+      type: mg.Types.ObjectId,
+      ref: "residents",
+    },
+  ],
   projects: [
     {
       type: mg.Types.ObjectId,
@@ -55,6 +57,6 @@ const clientSchema = new mg.Schema({
   ],
 });
 
-const model = mg.model("clients", clientSchema);
+const model = mg.model("office", officeSchema);
 
 module.exports = model;

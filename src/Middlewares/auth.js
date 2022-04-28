@@ -1,5 +1,6 @@
 const jwt = require('../Lib/jwt');
 
+
 function auth(req, res, next) {
     try {
         const {authorization: token} = req.headers
@@ -7,7 +8,7 @@ function auth(req, res, next) {
         const isValidToken = jwt.verify(token)
 
         if(!isValidToken) throw new Error('Not Authorized')
-        req.officerCurrent = isValidToken.id;
+        req.userCurrent = isValidToken.id;
         next();
     } catch (error) {
         res.status(401)
@@ -17,6 +18,7 @@ function auth(req, res, next) {
             error: error.message
         })
     }
+   
 }
 
-
+module.exports = auth;

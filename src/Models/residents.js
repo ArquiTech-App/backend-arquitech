@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
+const mg = require('mongoose');
 
-const residentSchema = new mongoose.Schema({
+
+
+const residentSchema = new mg.Schema({
     name: {
         type: String,
         required: true,
@@ -23,17 +25,23 @@ const residentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    permission: {
+      type: String,
+      required: true,
+      trim: true,
+      enum: ['admin', 'readOnly', 'readAndWrite']
+    },
     office: {
-        type: mg.Types.ObjectId, ref: 'office'
+        type: mongoose.Types.ObjectId, ref: 'office'
     },
     projects: [{
-      type: mg.Types.ObjectId, ref: 'projects'
+      type: mongoose.Types.ObjectId, ref: 'projects'
     }],
     tasks: [
       tasksSchema
     ]
 })
 
-const model = mongoose.model('residents', residentSchema)
+const model = mg.model('residents', residentSchema)
 
 module.exports = model

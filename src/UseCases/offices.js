@@ -14,7 +14,7 @@ async function create(dataOffices){
     const {name, address, email, password, rfc, client, residents, projects, permission} = dataOffices
 
 
-    const emailFound = await getOffices.findOne({email: email})
+    const emailFound = await Offices.findOne({email: email})
     if(emailFound) throw new Error("Not permision to create, this e-mail already exist");
 
     const passwordEncrypt = await bcrypt.hash(password)

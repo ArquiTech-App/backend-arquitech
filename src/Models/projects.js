@@ -14,21 +14,21 @@ const projectSchema = new mg.Schema({
       },
       organization: {
         type: String,
-        required: true,
+        required: false,
         minlength: 5,
         maxlength: 100,
         trim: true 
       },
       status: {
         type: String,
-        required: true,
+        required: false,
         minlength: 5,
         maxlength: 100,
         trim: true 
       },
       contract: {
         type: String,
-        required: true,
+        required: false,
         minlength: 5,
         maxlength: 100,
         trim: true 

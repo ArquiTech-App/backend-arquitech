@@ -12,18 +12,18 @@ function getById(idClient){
 }
 
  async function create(dataClients){
-   const {name, email} = dataClients
+   const {name, lastName, email} = dataClients
    
    const userFound = await Clients.findOne({email:email})
    if (userFound) throw new Error('Not permision to create, this client already exist') 
    
    const clientCreated = await Clients.create({...dataClients})
 
-   const token = jwt.sign({id: clientCreated._id})
+   //const token = jwt.sign({id: clientCreated._id})
 
    //await sgMail.emailResetPassword({name, lastName, email, token})
 
-   return token('email sent')
+   return "Client Created"
 }
 
 async function updateData(idClient, dataToUpdate){

@@ -8,6 +8,13 @@ const clientSchema = new mg.Schema({
     maxlength: 100,
     trim: true,
   },
+  lastName: {
+    type: String,
+    required: false,
+    minlength: 3,
+    maxlength: 100,
+    trim: true,
+  },
   adress: {
     type: String,
     required:false,

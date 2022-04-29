@@ -13,7 +13,7 @@ server.use(cors());
 
 server.use('/offices', routerOffice)
 server.use('/clients', routerClient)
-server.use('/project', routerProject)
+server.use('/projects', routerProject)
 
 
 module.exports = server

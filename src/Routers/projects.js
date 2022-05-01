@@ -4,7 +4,7 @@ const useCasesProjects = require('../UseCases/projects');
 
 const router = express.Router();
 
-router.get('/projects', async (request, response) => {
+router.get('/', async (request, response) => {
     try{
         
         const allProjects = await useCasesProjects.getProjects()
@@ -28,7 +28,7 @@ router.get('/projects', async (request, response) => {
     }
 })
 
-router.get('/projects/:id', async (request, response)=> {
+router.get('/:id', async (request, response)=> {
     try{
         const idProjects = request.params.id;
         const ProjectsFound = await useCasesProjects.getById(idProjects);
@@ -52,7 +52,7 @@ router.get('/projects/:id', async (request, response)=> {
     }   
 })
 
-router.post('/projects', async (request, response)=> {
+router.post('/', async (request, response)=> {
     try{
         const projectToCreate = request.body
         const projectCreated = await useCasesProjects.create(projectToCreate);
@@ -73,7 +73,7 @@ router.post('/projects', async (request, response)=> {
     }    
 })
 
-router.patch('/projects/:id', async (request, response)=> {
+router.patch('/:id', async (request, response)=> {
     try{
         const idProject = request.params.id;
         const dataToUpdate = request.body;
@@ -99,7 +99,7 @@ router.patch('/projects/:id', async (request, response)=> {
     }   
 })
 
-router.delete('/projects/:id', async (request, response)=> {
+router.delete('/:id', async (request, response)=> {
     try{
         const idProject = request.params.id;
         const deleteProject = await useCasesProjects.deleteById(idProject)

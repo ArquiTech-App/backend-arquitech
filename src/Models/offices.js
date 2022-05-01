@@ -3,14 +3,14 @@ const mg = require("mongoose");
 const officeSchema = new mg.Schema({
   name: {
     type: String,
-    required: true,
+    required: false,
     minlength: 3,
     maxlength: 100,
     trim: true,
   },
   address: {
     type: String,
-    required: true,
+    required: false,
     maxlength: 100,
     trim: true,
   },
@@ -25,14 +25,14 @@ const officeSchema = new mg.Schema({
   },
   permission: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
     enum: ['admin', 'readOnly', 'readAndWrite'],
     default: 'admin'
   },
   rfc: {
     type: String,
-    required: true,
+    required: false,
     minlength: 10,
     maxlength: 15,
     trim: true,

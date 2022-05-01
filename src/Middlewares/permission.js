@@ -62,6 +62,6 @@ function readOnly(req, res, next) {
 }
 module.exports = {
     admin,
-   // writer,
-   // read
+    readAndWrite,
+    readOnly
 };

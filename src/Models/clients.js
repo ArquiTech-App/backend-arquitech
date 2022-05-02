@@ -8,15 +8,22 @@ const clientSchema = new mg.Schema({
     maxlength: 100,
     trim: true,
   },
+  lastName: {
+    type: String,
+    required: false,
+    minlength: 3,
+    maxlength: 100,
+    trim: true,
+  },
   adress: {
     type: String,
-    required: true,
+    required:false,
     maxlength: 100,
     trim: true,
   },
   organization: {
     type: String,
-    required: true,
+    required:false,
     minlength: 5,
     maxlength: 100,
     trim: true,
@@ -28,18 +35,18 @@ const clientSchema = new mg.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   rfc: {
     type: String,
-    required: true,
+    required: false,
     minlength: 10,
     maxlength: 15,
     trim: true,
   },
   permission: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
     enum:['readOnly', 'readAndWrite']
   },
@@ -58,3 +65,4 @@ const clientSchema = new mg.Schema({
 const model = mg.model("clients", clientSchema);
 
 module.exports = model;
+

@@ -4,7 +4,7 @@ const useCasesClients = require('../UseCases/clients');
 
 const router = express.Router();
 
-router.get('/clients', async (request, response) => {
+router.get('/', async (request, response) => {
     try{
         
         const allClients = await useCasesClients.getClients()
@@ -28,7 +28,7 @@ router.get('/clients', async (request, response) => {
     }
 })
 
-router.get('/clients/:id', async (request, response)=> {
+router.get('/:id', async (request, response)=> {
     try{
         const idClient = request.params.id;
         const clientFound = await useCasesClients.getById(idClient);
@@ -52,11 +52,11 @@ router.get('/clients/:id', async (request, response)=> {
     }   
 })
 
-router.post('/create', (request, response) => {
+router.post('/', async (request, response) => {
 
     try{
         const clientToCreate = request.body
-        const clientCreated = useCasesClients.create(clientToCreate)
+        const clientCreated = await useCasesClients.create(clientToCreate)
         
         response.status(200)
         response.json({
@@ -75,7 +75,7 @@ router.post('/create', (request, response) => {
     }  
 })
 
-router.patch('/clients/:id', async (request, response)=> {
+router.patch('/:id', async (request, response)=> {
     try{
         const idClient = request.params.id;
         const dataToUpdate = request.body;
@@ -101,7 +101,7 @@ router.patch('/clients/:id', async (request, response)=> {
     }   
 })
 
-router.delete('/clients/:id', async (request, response)=> {
+router.delete('/:id', async (request, response)=> {
     try{
         const idClient = request.params.id;
         const deleteClient = await useCasesClients.deleteById(idClient)
@@ -151,6 +151,29 @@ router.patch('/reset-password/:id_user', async (request, response)=> {
             error: error.message
         })
     }   
+})
+
+// Login 
+router.post('/login', async (request, response)=>{
+    try {
+        const {email, password} = request.body;
+        const token = await useCasesClients.login(email, password);
+
+        response.json({
+            success: true, 
+            message: 'Login succesfully',
+            data:{
+                token
+            }
+        })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'Could not register',
+            error: error.message
+        })
+    }
 })
 
 module.exports = router;

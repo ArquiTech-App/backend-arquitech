@@ -129,7 +129,7 @@ router.delete('/:id',auth, validation, admin,  async (request, response)=> {
 
 
 // Login 
-router.post('/offices/login', async (request, response)=>{
+router.post('/login', async (request, response)=>{
     try {
         const {email, password} = request.body;
         const token = await useCasesOffices.login(email, password);

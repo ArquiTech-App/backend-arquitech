@@ -136,3 +136,11 @@ async function modelDerivative(urn) {
         console.log('Error at Model Derivative job.');
     }
 }
+
+module.exports = {
+    authorization,
+    publicAuthorization,
+    createBucket,
+    uploadDocumentAutodesk,
+    modelDerivative
+}

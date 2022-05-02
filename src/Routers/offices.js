@@ -59,7 +59,6 @@ router.post('/createAccount', async (request, response)=> {
     try{
         const officeToCreate = request.body 
         const officeCreated = await useCasesOffices.create(officeToCreate);
-
         response.json({
             success: true,
             message: 'Office Created',

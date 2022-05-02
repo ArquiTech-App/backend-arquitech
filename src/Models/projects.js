@@ -34,11 +34,7 @@ const projectSchema = new mg.Schema({
         trim: true 
       },
       client: {
-<<<<<<< HEAD
         type: mg.Schema.Types.ObjectId, ref: 'clients'
-=======
-        type: mg.Types.ObjectId, ref: 'clients'
->>>>>>> d0c093d6951d6925e7c2f47b6a0d190affd13006
       },
       office: {
         type: mg.Types.ObjectId, ref: 'office' 

@@ -7,16 +7,15 @@ const cors = require('cors');
 
 const server = express();
 server.use(cors());
-server.use('/', routerOffice)
-server.use('/', routerClient)
-server.use('/', routerProject)
-server.use('/', routerAutodesk)
-
 server.use(express.json());
-server.use(cors());
+server.use('/offices', routerOffice)
+server.use('/clients', routerClient)
+server.use('/proyects', routerProject)
+server.use('/autodesk', routerAutodesk)
 
 
-server.use(express.json());
+
+
 
 
 

@@ -55,7 +55,7 @@ router.get('/:id', auth, validation, async (request, response)=> {
 })
 
 //contraseña encriptada
-router.post('/', async (request, response)=> {
+router.post('/createAccount', async (request, response)=> {
     try{
         const officeToCreate = request.body 
         const officeCreated = await useCasesOffices.create(officeToCreate);

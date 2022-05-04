@@ -10,10 +10,14 @@ const sign = (payload) => {
 
 const verify = (token) => {
     return jwt.verify(token, JWT_SECRET)
+    
 }
-
+const decode = (token) => {
+    return jwt.decode(token, JWT_SECRET)
+}
 module.exports = {
     ...jwt, 
     sign, 
-    verify
+    verify,
+    decode
 }

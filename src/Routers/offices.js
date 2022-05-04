@@ -1,10 +1,32 @@
 const express = require('express');
 const useCasesOffices = require('../UseCases/offices');
+const {decode} = require('../Lib/jwt');
 const auth = require('../Middlewares/auth');
 const {admin, writer, read} = require('../Middlewares/permission');
 const validation = require('../Middlewares/validation')
 const router = express.Router();
 
+
+router.get('/getID', (request, response)=>{
+    try {
+        const token = request.body;
+        const userID = decode(token.token);
+        response.json({
+            success: true,
+            message: 'Get Id',
+            data: {
+                id: userID.id,
+            }
+        })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'error to get ID',
+            error: error.message
+        })
+    }
+})
 router.get('/',auth, async (request, response) => {
     try{
         

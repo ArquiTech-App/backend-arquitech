@@ -8,6 +8,11 @@ const officeSchema = new mg.Schema({
     maxlength: 100,
     trim: true,
   },
+  avatar:{
+    type: String,
+    required: false,
+    trim: true,
+  },
   address: {
     type: String,
     required: false,

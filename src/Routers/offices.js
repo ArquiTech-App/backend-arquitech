@@ -7,10 +7,10 @@ const validation = require('../Middlewares/validation')
 const router = express.Router();
 
 
-router.get('/getID', (request, response)=>{
+router.get('/getID/:token', (request, response)=>{
     try {
-        const token = request.body;
-        const userID = decode(token.token);
+        const token = request.params.token;
+        const userID = decode(token);
         response.json({
             success: true,
             message: 'Get Id',

@@ -13,33 +13,51 @@ const secretAccessKey = process.env.AWS_SECRET_KEY;
 const storage = new S3({
     region,
     accessKeyId,
-    secretAccessKey
+    secretAccessKey,
+    Bucket: 'userFolder'
 })
 
-
-
-function createBucket(bucketName){
-    return storage.createBucket(bucketName).promise();
+function createFolder(name){
+    return storage.putObject({
+        Bucket: 'arquitech',
+        ACL: "public-read",
+        Key: `${name}/`
+    }).promise()
 }
+
+
 function getBucket(){
     return storage.listBuckets().promise();
 }
-function uploadToBucket(file){
+function uploadToBucket(file, name){
     
     const stream = fs.createReadStream(file.path);
     
     const params = {
-        Bucket:'prueba-deveckor',
-        Key:file.originalname,
+        Bucket:'arquitech',
+        Key:`${name}/${file.originalname}`,
         ACL: "public-read",
         Body: stream
     }
     
+    
     return storage.upload(params).promise();
+    
+     
+}
+
+function getUrl(file, name){
+    const params = {
+        Bucket:'arquitech',
+        Key:`${name}/${file.originalname}`,
+    }
+    
+    return storage.getSignedUrl('getObject', params)
 }
 
 module.exports = {
     uploadToBucket,
     getBucket,
-    createBucket,
+    createFolder,
+    getUrl
 }

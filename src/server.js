@@ -14,7 +14,7 @@ server.use('/offices', routerOffice)
 server.use('/clients', routerClient)
 server.use('/proyects', routerProject)
 server.use('/autodesk', routerAutodesk)
-server.use('/upload', upload);
+server.use('/', upload);
 
 
 

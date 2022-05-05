@@ -35,6 +35,11 @@ const officeSchema = new mg.Schema({
     enum: ['admin', 'readOnly', 'readAndWrite'],
     default: 'admin'
   },
+  bucket: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   rfc: {
     type: String,
     required: false,

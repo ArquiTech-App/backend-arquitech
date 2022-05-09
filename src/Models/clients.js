@@ -44,11 +44,17 @@ const clientSchema = new mg.Schema({
     maxlength: 15,
     trim: true,
   },
+  avatar:{
+    type: String,
+    required: false,
+    trim: true
+  },
   permission: {
     type: String,
     required: false,
     trim: true,
-    enum:['readOnly', 'readAndWrite']
+    enum:['readOnly', 'readAndWrite'],
+    default: 'readOnly'
   },
   office: {
     type: mg.Types.ObjectId,

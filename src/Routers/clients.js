@@ -1,5 +1,5 @@
 const express = require('express');
-
+const {decode} = require('../Lib/jwt')
 const useCasesClients = require('../UseCases/clients');
 
 const router = express.Router();
@@ -52,11 +52,12 @@ router.get('/:id', async (request, response)=> {
     }   
 })
 
-router.post('/', async (request, response) => {
+
+router.post('/createClient', async (request, response) => {
 
     try{
-        const clientToCreate = request.body
-        const clientCreated = await useCasesClients.create(clientToCreate)
+        const dataClients = request.body
+        const clientCreated = await useCasesClients.create(dataClients)
         
         response.status(200)
         response.json({
@@ -79,6 +80,8 @@ router.patch('/:id', async (request, response)=> {
     try{
         const idClient = request.params.id;
         const dataToUpdate = request.body;
+        console.log(idClient);
+        console.log(dataToUpdate);
         const client = await useCasesClients.updateData(idClient, dataToUpdate);
 
         if(!client) throw new Error('Client Not Found');
@@ -126,12 +129,14 @@ router.delete('/:id', async (request, response)=> {
 })
 
 //patch reset password
-router.patch('/reset-password/:id_user', async (request, response)=> {
+router.patch('/restartPassword', async (request, response)=> {
     try{
         
-        const idClient = request.params.id_user;
+        const token = request.query.token;
+        const userID = decode(token);
+        const idClient = userID.id;
         const dataToUpdate = request.body;
-        const client = await useCasesClients.updateData(idClient, dataToUpdate);
+        const client = await useCasesClients.updatePasword(idClient, dataToUpdate);
 
         if(!client) throw new Error('Client Not Found');
         response.json({
@@ -147,7 +152,7 @@ router.patch('/reset-password/:id_user', async (request, response)=> {
         response.status(404)
         response.json({
             success: false,
-            message: 'Error updating',
+            message: 'Error updating password',
             error: error.message
         })
     }   
@@ -175,5 +180,27 @@ router.post('/login', async (request, response)=>{
         })
     }
 })
+
+router.get('/office/:id', async (request, response)=> {
+    try {
+        const idOffice = request.params.id;
+        const getClients = useCasesClients.getForIdOffice(idOffice);
+        res.json({
+            success: true,
+            message: 'get client for offices',
+            data: {
+                clients: getClients
+            }
+        })
+    } catch (error) {
+        res.status(400);
+        res.json({
+            success: false,
+            error: error.message,
+            message: 'Clients not Found'
+        })
+    }
+})
+
 
 module.exports = router;

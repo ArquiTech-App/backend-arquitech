@@ -2,7 +2,7 @@ const express = require('express');
 const useCasesOffices = require('../UseCases/offices');
 const {decode} = require('../Lib/jwt');
 const auth = require('../Middlewares/auth');
-const {admin, writer, read} = require('../Middlewares/permission');
+const {admin, readOnly, readAndWrite} = require('../Middlewares/permission');
 const validation = require('../Middlewares/validation')
 const router = express.Router();
 
@@ -166,7 +166,7 @@ router.post('/login', async (request, response)=>{
         response.status(400)
         response.json({
             success: false,
-            message: 'Could not register',
+            message: 'Could office not register',
             error: error.message
         })
         

@@ -7,7 +7,7 @@ function getOffices(){
 }
 
 function getById(idOffice){
-    return Offices.findById(idOffice)
+    return Offices.findById(idOffice).populate({path: 'clients'})
 }
 
 async function create(dataOffices){

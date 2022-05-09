@@ -13,7 +13,7 @@ router.post('/upload/:name',upload.single('file'), async (req, res) => {
         const uploadFile = await uploadToBucket(file, name)
 
         const url = await getUrl(file, name)
-
+        
         
         res.json({
             success: true,
@@ -35,7 +35,7 @@ router.post('/upload/:name',upload.single('file'), async (req, res) => {
 router.post('/createFolder', async (req, res) => {
     try {
         const name = req.body.name;
-        console.log(name);
+        
         const Folder = await createFolder(name);
         
         res.json({

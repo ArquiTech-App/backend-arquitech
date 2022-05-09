@@ -1,7 +1,10 @@
 const Clients = require('../Models/clients');
 const bcrypt = require('../Lib/bcrypt');
 const jwt = require('../Lib/jwt');
-const sgMail = require('../Lib/sendgrid')
+const mailazy = require('../Lib/mailazy');
+const Office = require('../Models/offices')
+
+
 
 function getClients(){
    return Clients.find({})
@@ -15,20 +18,27 @@ function getById(idClient){
    const {name, lastName, email} = dataClients
    
    const userFound = await Clients.findOne({email:email})
-   if (userFound) throw new Error('Not permision to create, this client already exist') 
    
+   if (userFound) throw new Error('Not permision to create, this client already exist') 
    const clientCreated = await Clients.create({...dataClients})
+   
+   const token = jwt.sign({id: clientCreated._id})
+   const idOffice = clientCreated.office
+   const updateOffice = await Office.findByIdAndUpdate(idOffice, {$push: {clients: clientCreated._id}})
+   //  let resClient = await mailazy(email, lastName, name);
+   // await sendG.mailResetPassword({name, lastName, email})
 
-   //const token = jwt.sign({id: clientCreated._id})
-
-   //await sgMail.emailResetPassword({name, lastName, email, token})
-
-   return "Client Created"
+   // return resClient;
+   console.log(token);
 }
 
-async function updateData(idClient, dataToUpdate){
+async function updateData(idClient, dataClients){
+   return Clients.findByIdAndUpdate(idClient, dataClients)
+}
+async function updatePasword(idClient, dataToUpdate){
 
    const {newPassword, confirmPassword} = dataToUpdate
+   
    if(newPassword !== confirmPassword) throw new Error("Error Passwords do not match");
 
    const passwordEncrypt = await bcrypt.hash(newPassword)
@@ -52,11 +62,18 @@ async function login(email, password){
    permission: userFound.permission})
 }
 
+
+async function getForIdOffice(idOffice){
+   return Clients.find({office: {_id: idOffice}}).populate({path: 'office', select:'name'})
+}
+
 module.exports = {
    getClients,
    getById,
    create,
-   updateData,
+   updatePasword,
    deleteById,
-   login
+   login,
+   getForIdOffice,
+   updateData
 }

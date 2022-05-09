@@ -98,7 +98,7 @@ router.patch('/:id', async (request, response)=> {
         response.status(404)
         response.json({
             success: false,
-            message: 'Error updating',
+            message: 'Error updating q',
             error: error.message
         })
     }   
@@ -128,35 +128,7 @@ router.delete('/:id', async (request, response)=> {
     }  
 })
 
-//patch reset password
-router.patch('/restartPassword', async (request, response)=> {
-    try{
-        
-        const token = request.query.token;
-        const userID = decode(token);
-        const idClient = userID.id;
-        const dataToUpdate = request.body;
-        const client = await useCasesClients.updatePasword(idClient, dataToUpdate);
 
-        if(!client) throw new Error('Client Not Found');
-        response.json({
-            success: true,
-            message: 'Client Updated Successfully',
-            data:{
-                clients: client
-            }
-        })
-
-    } catch (error) {
-
-        response.status(404)
-        response.json({
-            success: false,
-            message: 'Error updating password',
-            error: error.message
-        })
-    }   
-})
 
 // Login 
 router.post('/login', async (request, response)=>{

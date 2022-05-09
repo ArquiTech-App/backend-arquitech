@@ -10,7 +10,8 @@ const fn = async (email, lastName, name, token) => {
             from: 'sender@deveckor.com', // Use domain you verified, required
             subject: 'Bienvenido a Arquitech...', // required
             
-            html: `<h2>Bienvenido a Arquitech</h2> <p>Hola ${name} ${lastName} por favor ingresa al siguiente link para restablecer tu contraseña <a href="http://localhost:8080/clients/restartPassword?token=${token}">arquitech</a></p>`,
+            text: `Bienvenido a Arquitech
+            Hola ${name} ${lastName} por favor ingresa al siguiente link para restablecer tu contraseña http://localhost:3000/customer/restartPassword?token=${token}`,
         });
         console.log("resp: " + resp);
     } catch (e) {

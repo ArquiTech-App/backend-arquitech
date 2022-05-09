@@ -25,11 +25,11 @@ function getById(idClient){
    const token = jwt.sign({id: clientCreated._id})
    const idOffice = clientCreated.office
    const updateOffice = await Office.findByIdAndUpdate(idOffice, {$push: {clients: clientCreated._id}})
-   //  let resClient = await mailazy(email, lastName, name);
+    let resClient = await mailazy(email, lastName, name, token);
    // await sendG.mailResetPassword({name, lastName, email})
 
-   // return resClient;
-   console.log(token);
+   return resClient;
+   
 }
 
 async function updateData(idClient, dataClients){

@@ -10,7 +10,7 @@ dbConnect()
     .then(() => {
         console.log('Database Connected: ')
         server.listen (PORT, () => {
-            console.log('Server Running on Port 8080');
+            console.log(`Server Running on Port ${PORT}`);
         })
     })
     .catch((error) => {

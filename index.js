@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const server = require('./src/server')
 
-const dbConnect = require('./src/lib/db')
+const dbConnect = require('./src/Lib/db')
 
 const PORT = process.env.PORT || 8080
 

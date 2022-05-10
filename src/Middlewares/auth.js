@@ -6,7 +6,7 @@ function auth(req, res, next) {
         const {authorization: token} = req.headers
 
         const isValidToken = jwt.verify(token)
-
+        console.log(isValidToken);
         if(!isValidToken) throw new Error('Not Authorized')
         req.userCurrent = isValidToken.id;
         next();

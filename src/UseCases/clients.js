@@ -11,7 +11,7 @@ function getClients(){
 }
 
 function getById(idClient){
-   return Clients.findById(idClient)
+   return Clients.findById(idClient).populate('office projects')
 }
 
  async function create(dataClients){

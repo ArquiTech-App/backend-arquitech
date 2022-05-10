@@ -36,13 +36,14 @@ const clientSchema = new mg.Schema({
   password: {
     type: String,
     required: false,
+    select: false
   },
   rfc: {
     type: String,
     required: false,
     minlength: 10,
     maxlength: 15,
-    trim: true,
+    trim: true
   },
   avatar:{
     type: String,

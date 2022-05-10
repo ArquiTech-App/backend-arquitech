@@ -1,6 +1,7 @@
 const express = require('express');
 const {decode} = require('../Lib/jwt')
-const useCasesClients = require('../UseCases/clients');
+const useCasesClients = require('../UseCases/clients')
+const auth = require('../Middlewares/auth')
 
 const router = express.Router();
 
@@ -28,9 +29,9 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.get('/:id', async (request, response)=> {
+router.get('/user-current', auth, async (request, response)=> {
     try{
-        const idClient = request.params.id;
+        const idClient = request.userCurrent;
         const clientFound = await useCasesClients.getById(idClient);
 
         if(!clientFound) throw new Error("Client not found");

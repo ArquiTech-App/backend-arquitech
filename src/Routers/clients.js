@@ -31,9 +31,9 @@ router.get('/', async (request, response) => {
 
 router.get('/:id', async (request, response)=> {
     try{
-        const idClient = request.query.id;
+        const idClient = request.params.id;
         const clientFound = await useCasesClients.getById(idClient);
-
+        console.log(idClient);
         if(!clientFound) throw new Error("Client not found");
         response.json({
             success: true,

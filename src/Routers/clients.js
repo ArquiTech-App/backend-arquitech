@@ -29,7 +29,7 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.get('/:id', auth, async (request, response)=> {
+router.get('/:id', async (request, response)=> {
     try{
         const idClient = request.query.id;
         const clientFound = await useCasesClients.getById(idClient);

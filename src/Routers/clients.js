@@ -29,9 +29,9 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.get('/user-current', auth, async (request, response)=> {
+router.get('/:id', auth, async (request, response)=> {
     try{
-        const idClient = request.userCurrent;
+        const idClient = request.query.id;
         const clientFound = await useCasesClients.getById(idClient);
 
         if(!clientFound) throw new Error("Client not found");

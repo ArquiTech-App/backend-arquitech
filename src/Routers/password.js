@@ -11,9 +11,10 @@ router.patch('/restartPassword', async (request, response)=> {
         const token = request.query.token;
         const userID = decode(token);
         const idClient = userID.id;
+        
         const dataToUpdate = request.body;
         const client = await useCasesClients.updatePasword(idClient, dataToUpdate);
-
+        console.log(client);
         if(!client) throw new Error('Client Not Found');
         response.json({
             success: true,

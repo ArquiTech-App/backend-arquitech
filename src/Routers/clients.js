@@ -29,6 +29,29 @@ router.get('/', async (request, response) => {
     }
 })
 
+router.get('/user-current', auth, async (request, response)=> {
+    try{
+        const idClient = request.userCurrent;
+        const clientFound = await useCasesClients.getById(idClient);
+
+        if(!clientFound) throw new Error("Client not found");
+        response.json({
+            success: true,
+            message: "Client found",
+            data: {
+                clients: clientFound
+            }
+        })
+
+    } catch (error) {
+        response.status(404)
+        response.json({
+            success: false,
+            message: "Client not found",
+            error: error.message
+        })
+    }   
+})
 router.get('/:id', async (request, response)=> {
     try{
         const idClient = request.params.id;

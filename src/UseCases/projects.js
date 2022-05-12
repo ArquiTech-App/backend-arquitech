@@ -31,7 +31,10 @@ async function create(dataProjects, idClient){
 }
 
 function updateData(idProject, dataToUpdate){
-    
+    if (dataToUpdate) {
+        
+        return Projects.findByIdAndUpdate(idProject, {$push:{documents: dataToUpdate.documents}}, {new:true})
+    }
     return Projects.findByIdAndUpdate(idProject, dataToUpdate, {new:true})
 }
 

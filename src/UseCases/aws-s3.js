@@ -19,7 +19,7 @@ const storage = new S3({
 
 function createFolder(name){
     return storage.putObject({
-        Bucket: 'arquitech',
+        Bucket: 'arquitec',
         ACL: "public-read",
         Key: `${name}/`
     }).promise()

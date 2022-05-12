@@ -174,6 +174,17 @@ router.get('/office/:id', async (request, response)=> {
         })
     }
 })
+router.patch('uploadFile/:id', async (request, response)=> {
+    
+    try {
+        const id = request.params.id;
+        const body = request.body;
+        
+        
+    } catch (error) {
+        
+    }
+})
 
 
 module.exports = router;

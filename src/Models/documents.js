@@ -10,7 +10,14 @@ const documentSchema = new mg.Schema({
       },
       url: {
         type: String,
-        required: true,
+        required: false,
+        minlength: 3,
+        maxlength: 100,
+        trim: true 
+     },
+      urn: {
+        type: String,
+        required: false,
         minlength: 3,
         maxlength: 100,
         trim: true 

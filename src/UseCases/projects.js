@@ -2,6 +2,7 @@ const Projects = require('../Models/projects');
 const bcrypt = require('../Lib/bcrypt');
 const jwt = require('../Lib/jwt');
 const Clients = require('../Models/clients')
+const Documents = require('../Models/documents')
 
 function getProjects(){
     return Projects.find({})
@@ -30,6 +31,7 @@ async function create(dataProjects, idClient){
 }
 
 function updateData(idProject, dataToUpdate){
+    
     return Projects.findByIdAndUpdate(idProject, dataToUpdate, {new:true})
 }
 

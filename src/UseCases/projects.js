@@ -13,7 +13,7 @@ function getById(idProjects){
 
 
 
-async function create(dataProjects, idClient){
+async function create(dataProjects){
     const {name, organization, status, contract, client, office, documents, tasks} = dataProjects
 
     const ProjectFound = await Projects.findOne({name: name})

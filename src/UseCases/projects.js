@@ -1,7 +1,7 @@
 const Projects = require('../Models/projects');
 const bcrypt = require('../Lib/bcrypt');
 const jwt = require('../Lib/jwt');
-const Clients = require('../UseCases/clients')
+const Clients = require('../Models/clients')
 
 function getProjects(){
     return Projects.find({})
@@ -13,7 +13,7 @@ function getById(idProjects){
 
 
 
-async function create(dataProjects){
+async function create(dataProjects, idClient){
     const {name, organization, status, contract, client, office, documents, tasks} = dataProjects
 
     const ProjectFound = await Projects.findOne({name: name})

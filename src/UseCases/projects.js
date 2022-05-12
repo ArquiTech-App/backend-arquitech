@@ -13,15 +13,17 @@ function getById(idProjects){
 
 
 
-async function create(dataProjects){
+async function create(dataProjects, idClient){
     const {name, organization, status, contract, client, office, documents, tasks} = dataProjects
 
     const ProjectFound = await Projects.findOne({name: name})
     if(ProjectFound) throw new Error("Not permision to create, this Project already exist");
-    const projectCreated = await Projects.create({...dataProjects})
+    const projectCreated = await Projects.create({...dataProjects,
+    "client": idClient
+    })
 
-    const idClient = projectCreated.client
-    return updateClient = await Clients.findByIdAndUpdate(idClient,{$push:{project: projectCreated._id}})
+    
+    return updateClient = await Clients.findByIdAndUpdate(idClient,{$push:{projects: projectCreated._id}})
 
 
     

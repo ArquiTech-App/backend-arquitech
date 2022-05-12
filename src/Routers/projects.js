@@ -52,11 +52,11 @@ router.get('/:id', async (request, response)=> {
     }   
 })
 
-router.post('/', async (request, response)=> {
+router.post('/:id', async (request, response)=> {
     try{
-       
+        const idClient = request.params.id;
         const projectToCreate = request.body
-        const projectCreated = await useCasesProjects.create(projectToCreate);
+        const projectCreated = await useCasesProjects.create(projectToCreate, idClient);
 
         response.json({
             success: true,

@@ -48,7 +48,7 @@ function uploadToBucket(file, name){
 
 function getUrl(file, name){
     const params = {
-        Bucket:'arquitech',
+        Bucket:'arquitec',
         Key:`${name}/${file.originalname}`,
     }
     

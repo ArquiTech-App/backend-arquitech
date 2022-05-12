@@ -1,6 +1,6 @@
 const querystring = require('querystring')
-
 const Axios = require('axios')
+const res = require('express/lib/response')
 require('dotenv').config()
 
 const CLIENT_ID = process.env.CLIENT_ID
@@ -9,7 +9,8 @@ const scopes = 'data:read data:write data:create bucket:create bucket:read viewa
 let access_token = ''
 let urn = ''
 
-async function authorization () {
+async function authorization(file,originalname, response) {
+
   try {
     const res = await Axios({
       method: 'POST',
@@ -25,7 +26,9 @@ async function authorization () {
       })
     })
 
-    return access_token = res.data.access_token
+    access_token = res.data.access_token
+    
+    return uploadDocumentAutodesk(file,originalname, response);
   } catch (error) {
     console.log(error)
   }
@@ -56,7 +59,8 @@ async function publicAuthorization (response) {
   }
 }
 
-async function createBucket (nameBucket) {
+async function createBucket (nameBucket, req) {
+  
   const bucketKey = nameBucket
   const policyKey = 'persistent'
 
@@ -75,21 +79,24 @@ async function createBucket (nameBucket) {
       })
 
     })
+    return uploadDocumentAutodesk(req)
   } catch (error) {
     if (error.result && error.result.status == 409) {
       console.log('Bucket already exist, skip creation.')
+      return uploadDocumentAutodesk(req)
     }
     console.log(error)
   }
 }
 
-async function uploadDocumentAutodesk (request) {
+async function uploadDocumentAutodesk (file, originalname, response) {
+ 
   const fs = require('fs')
-  fs.readFile(request.file.path, async (err, filecontent) => {
+  fs.readFile(file, async (err, filecontent) => {
     try {
       const result = await Axios({
         method: 'PUT',
-        url: `https://developer.api.autodesk.com/oss/v2/buckets/${encodeURIComponent(bucketKey)}/objects/${encodeURIComponent(req.file.originalname)}`,
+        url: `https://developer.api.autodesk.com/oss/v2/buckets/${encodeURIComponent('arquitech')}/objects/${encodeURIComponent(originalname)}`,
         headers: {
           Authorization: `Bearer ${access_token}`,
           'Accept-Encoding': 'gzip, deflate'
@@ -98,14 +105,19 @@ async function uploadDocumentAutodesk (request) {
         data: filecontent
       })
       urn = Buffer.from(result.data.objectId).toString('base64')
-      modelDerivative(urn)
+      response.json({
+        success: true,
+        message: 'success upload model 3d.',
+        name: originalname,
+        urn: urn
+      })
     } catch (error) {
       console.log('Failed to create a new object in the bucket')
     }
   })
 }
 
-async function modelDerivative (urn) {
+async function modelDerivative(urn) {
   try {
     const result = await Axios({
       method: 'POST',
@@ -129,6 +141,9 @@ async function modelDerivative (urn) {
         }
       })
     })
+    let json = await res.json()
+    console.log(json);
+    return json
   } catch (error) {
     console.log('Error at Model Derivative job.')
   }

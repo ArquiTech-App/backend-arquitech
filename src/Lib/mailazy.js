@@ -11,7 +11,7 @@ const fn = async (email, lastName, name, token) => {
             subject: 'Bienvenido a Arquitech...', // required
             
             text: `Bienvenido a Arquitech
-            Hola ${name} ${lastName} por favor ingresa al siguiente link para restablecer tu contraseña http://localhost:3000/customer/restartPassword?token=${token}`,
+            Hola ${name} ${lastName} por favor ingresa al siguiente link para restablecer tu contraseña http://localhost:3000/restartPassword?token=${token}`,
         });
         console.log("resp: " + resp);
     } catch (e) {

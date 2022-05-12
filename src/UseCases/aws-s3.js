@@ -34,7 +34,7 @@ function uploadToBucket(file, name){
     const stream = fs.createReadStream(file.path);
     
     const params = {
-        Bucket:'arquitech',
+        Bucket:'arquitec',
         Key:`${name}/${file.originalname}`,
         ACL: "public-read",
         Body: stream

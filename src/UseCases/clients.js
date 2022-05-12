@@ -42,6 +42,7 @@ async function updatePasword(idClient, dataToUpdate){
    if(newPassword !== confirmPassword) throw new Error("Error Passwords do not match");
 
    const passwordEncrypt = await bcrypt.hash(newPassword)
+   console.log(passwordEncrypt);
    return Clients.findByIdAndUpdate(idClient, {password: passwordEncrypt}, {new:true})
 }
 
@@ -52,6 +53,7 @@ function deleteById(idClient){
 //Login Clients
 async function login(email, password){
    const userFound = await Clients.findOne({email: email})
+   console.log(userFound);
    if (!userFound) throw new Error('Invalid credentials')
 
    const isValidPassword = await bcrypt.compare(password, userFound.password)

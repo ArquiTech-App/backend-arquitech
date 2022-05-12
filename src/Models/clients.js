@@ -35,8 +35,8 @@ const clientSchema = new mg.Schema({
   },
   password: {
     type: String,
-    required: false,
-    select: false
+    required: false
+    
   },
   rfc: {
     type: String,

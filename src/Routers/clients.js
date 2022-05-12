@@ -135,6 +135,7 @@ router.delete('/:id', async (request, response)=> {
 router.post('/login', async (request, response)=>{
     try {
         const {email, password} = request.body;
+        console.log(email, password);
         const token = await useCasesClients.login(email, password);
 
         response.json({

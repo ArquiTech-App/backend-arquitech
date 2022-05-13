@@ -1,7 +1,7 @@
 const express = require('express');
 const {uploadToBucket, getBucket, createFolder, getUrl} = require('../UseCases/aws-s3');
 const multer = require('multer');
-let upload = multer({dest: 'temp/'});
+let upload = multer({dest: 'temp/', limits: {maxSize: 1048576}});
 const router = express.Router();
 
 router.post('/upload/:name',upload.single('file'), async (req, res) => {

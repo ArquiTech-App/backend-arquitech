@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-let upload = multer({dest: 'temp/'});
+let upload = multer({dest: 'temp/', limits: {maxSize: 1048576}});
 const useCasesAutodesk = require('../UseCases/autodesk');
 
 const router = express.Router();

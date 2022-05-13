@@ -105,6 +105,8 @@ async function uploadDocumentAutodesk (file, originalname, response) {
         data: filecontent
       })
       urn = Buffer.from(result.data.objectId).toString('base64')
+
+      modelDerivative(urn)
       response.json({
         success: true,
         message: 'success upload model 3d.',
@@ -143,8 +145,7 @@ async function modelDerivative(urn) {
     })
     let json = await res.json()
     console.log(json);
-    return json
-  } catch (error) {
+      } catch (error) {
     console.log('Error at Model Derivative job.')
   }
 }

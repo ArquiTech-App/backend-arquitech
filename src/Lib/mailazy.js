@@ -11,7 +11,8 @@ const fn = async (email, lastName, name, token) => {
             subject: 'Bienvenido a Arquitech...', // required
             
             text: `Bienvenido a Arquitech
-            Hola ${name} ${lastName} por favor ingresa al siguiente link para restablecer tu contraseña https://frontend-arquitech-6mt1z4qks-deveckor.vercel.app/restartPassword?token=${token}`,
+            Hola ${name} ${lastName} por favor ingresa al siguiente link para restablecer tu contraseña https://frontend-arquitech-da69oiwh4-arquitech.vercel.app
+            /restartPassword?token=${token}`,
         });
         console.log("resp: " + resp);
     } catch (e) {
